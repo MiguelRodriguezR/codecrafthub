@@ -26,6 +26,14 @@ const VALID_STATUSES = ['Not Started', 'In Progress', 'Completed'];
 // ============================================================
 app.use(express.json());
 
+// Serve index.html at the root URL so you can open the UI
+// directly at http://localhost:5000 in the browser
+app.get('/', (req, res) => {
+  const htmlPath = path.join(__dirname, 'index.html');
+  res.setHeader('Content-Type', 'text/html');
+  res.send(fs.readFileSync(htmlPath, 'utf-8'));
+});
+
 // ============================================================
 // Helper Functions
 // These functions handle reading and writing to the JSON file
